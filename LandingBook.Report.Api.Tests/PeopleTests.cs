@@ -38,17 +38,8 @@ namespace LandingBook.Report.Api.Tests {
 
         [Test]
         public void PostNamePersonFromAPI() {
-            RestRequest request = new RestRequest(_controllerName, Method.Post);
-            PersonCreateModel postName = new PersonCreateModel() {
-                FirstName = "Ig",
-                LastName = "Ivanov",
-                SerialNumber = 147,
-                OrganizationId = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-            };
-            request.AddBody(postName);
-            var responce = _client.Execute<Guid>(request);
-            Assert.NotNull(responce.Data);
-            Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            string peopleId = CreateJump();
+
         }
         [Test]
         public void PutNamePersonFromAPI() {
@@ -93,8 +84,15 @@ namespace LandingBook.Report.Api.Tests {
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
-        [Test]
+            [Test]
         public void PeopleCreateReadUpdateDelete() {
+         string peopleId = CreateJump();
+            UpdatePeople(peopleId);
+            DeletePeople(peopleId);
+           
+        }
+
+        private string CreateJump() {
             RestRequest request = new RestRequest(_controllerName, Method.Post);
             PersonCreateModel postName = new PersonCreateModel() {
                 FirstName = "Ivan",
@@ -106,24 +104,33 @@ namespace LandingBook.Report.Api.Tests {
             var responce = _client.Execute<string>(request);
             Assert.NotNull(responce.Data);
             Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            RestRequest requestPut = new RestRequest(_controllerName, Method.Put);
-            PersonUpdateModel putName = new PersonUpdateModel() {
+            return responce.Data;
+        }
+
+        private void UpdatePeople(string peopleId) {
+            RestRequest request = new RestRequest(_controllerName, Method.Put);
+            PersonUpdateModel model = new PersonUpdateModel() {
                 FirstName = "Roma",
                 LastName = "Tirov",
                 SerialNumber = 4,
                 OrganizationId = "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                Id = responce.Data
+                Id = peopleId
             };
-            requestPut.RequestFormat = DataFormat.Json;
-            requestPut.AddJsonBody(putName);
-            var responcePut = _client.Execute<PersonUpdateModel>(requestPut);
-            Assert.That(responcePut.Data.FirstName, Is.EqualTo("Roma"));
-            Assert.That(responcePut.Data.LastName, Is.EqualTo("Tirov"));
-            Assert.That(responcePut.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            RestRequest requestDelete = new RestRequest($"{_controllerName}/{responce.Data}", Method.Delete);
-            var responceDelete = _client.Execute<string>(requestDelete);
-            Assert.That(responceDelete.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(model);
+            var responce = _client.Execute<PersonUpdateModel>(request);
+            Assert.That(responce.Data.FirstName, Is.EqualTo(model.FirstName));
+            Assert.That(responce.Data.LastName, Is.EqualTo(model.LastName));
+            Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
         }
 
-    }
+        private void DeletePeople(string peopleId) {
+            RestRequest request = new RestRequest($"{_controllerName}/{peopleId}", Method.Delete);
+            var responce = _client.Execute<string>(request);
+            Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(responce.Data, Is.EqualTo(peopleId));
+        }
+
+        }
 }
