@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{FA407F36-C755-4940-ADA8-92EBE35DB32C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandingBook.Report.Api.Tests", "LandingBook.Report.Api.Tests\LandingBook.Report.Api.Tests.csproj", "{BD9ED531-EE08-4BD4-A250-DDD9E5E15CAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FA407F36-C755-4940-ADA8-92EBE35DB32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA407F36-C755-4940-ADA8-92EBE35DB32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA407F36-C755-4940-ADA8-92EBE35DB32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA407F36-C755-4940-ADA8-92EBE35DB32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9ED531-EE08-4BD4-A250-DDD9E5E15CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9ED531-EE08-4BD4-A250-DDD9E5E15CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9ED531-EE08-4BD4-A250-DDD9E5E15CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9ED531-EE08-4BD4-A250-DDD9E5E15CAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D2FD7153-A8A4-43CB-A961-34BAB7C4B1A8}
+		SolutionGuid = {F17DDF97-3D2E-42DF-B274-7FA0890B0A10}
 	EndGlobalSection
 EndGlobal
