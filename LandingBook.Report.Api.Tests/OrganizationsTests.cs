@@ -15,7 +15,7 @@ namespace LandingBook.Report.Api.Tests {
         }
 
         [Test]
-        public void OrganizationCreateReadUpdateDelet() {
+        public void OrganizationCreateReadUpdateDelete() {
             string organizationId = CreateOrganization();
             UpdateOrganization(organizationId);
             GetOrganizationById(organizationId);
@@ -48,7 +48,7 @@ namespace LandingBook.Report.Api.Tests {
 
         }
 
-        private void GetOrganizationById (string organizationId) {
+        private void GetOrganizationById(string organizationId) {
             RestRequest request = new RestRequest($"{_controllerName}/{organizationId}", Method.Get);
             var responce = _client.Execute<OrganizationUpdateModel>(request);
             Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
@@ -61,5 +61,5 @@ namespace LandingBook.Report.Api.Tests {
             Assert.That(responce.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(responce.Data, Is.EqualTo(organizationId));
         }
-        }
+    }
 }
